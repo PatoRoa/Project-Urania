@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://mmipn6sb3qrg"]
+
+[ext_resource type="Texture2D" uid="uid://dmr5cksemcjn3" path="res://main_menu/Background wall.PNG" id="1_nn2i6"]
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_p61kh"]
+[ext_resource type="Texture2D" uid="uid://bgin36dpdp8qx" path="res://main_menu/Versus poster.png" id="2_11x1v"]
+[ext_resource type="Texture2D" uid="uid://dulr1mmy08nli" path="res://main_menu/Quit poster.png" id="3_lp8ws"]
+[ext_resource type="Script" path="res://main_menu/Versus Button.gd" id="4_j71d0"]
+[ext_resource type="Script" path="res://main_menu/Quit Button.gd" id="6_v6ghv"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p61kh")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nn2i6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VersusButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_right = NodePath("../QuitButton")
+icon = ExtResource("2_11x1v")
+icon_alignment = 1
+script = ExtResource("4_j71d0")
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../VersusButton")
+icon = ExtResource("3_lp8ws")
+icon_alignment = 1
+script = ExtResource("6_v6ghv")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

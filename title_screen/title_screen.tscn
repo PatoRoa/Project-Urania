@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://8wq6g8rhtabv"]
+
+[ext_resource type="Script" path="res://title_screen/title_screen.gd" id="1_w3vbw"]
+[ext_resource type="Texture2D" uid="uid://dsnyeje62sdg2" path="res://title_screen/Background wall.PNG" id="2_igard"]
+[ext_resource type="Script" path="res://title_screen/Button.gd" id="3_0co2f"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w3vbw")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_igard")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 218.0
+offset_right = -219.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 100
+text = "Project Urania"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Start"
+script = ExtResource("3_0co2f")
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
